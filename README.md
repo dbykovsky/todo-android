@@ -3,6 +3,7 @@
 
 ######DEMO
 App v1. demo: https://www.youtube.com/watch?v=WJGXWFLYSkY
+![demo mov](https://github.com/dbykovsky/todo-android/blob/master/TodoApp.mov)
 
 ######SUPPORTED DEVICES
 This App was sucessfully tested on Genymotion emulators Google Nexus5-5.0.0-API21 and Google Nexus4-4.4.4-API
