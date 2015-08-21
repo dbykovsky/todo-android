@@ -1,18 +1,14 @@
 package com.home.dbykovskyy.simpletodo;
 
 import android.app.Activity;
-
-import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.home.dbykovskyy.simpletodo.database.Item;
@@ -38,6 +34,9 @@ public class ToDoActivity extends Activity{
         itemAdapter = new ItemsAdapter(this, items);
         lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(itemAdapter);
+        if(items.size()==0)
+           displayToastInCenter("Start adding your Todo items from down below", Toast.LENGTH_LONG);
+
     }
 
     @Override
@@ -47,6 +46,11 @@ public class ToDoActivity extends Activity{
         return true;
     }
 
+    private void displayToastInCenter(String msg, final int length){
+        Toast toast = Toast.makeText(this,msg, length);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
 
     public void onAddItem(View v){
         Item tmpUserInput = new Item();
@@ -55,7 +59,7 @@ public class ToDoActivity extends Activity{
         itemAdapter.add(tmpUserInput);
         etNewItem.setText(null);
         writeItemsToDb();
-        Toast.makeText(this, tmpUserInput.itemName+" is successfully added", Toast.LENGTH_SHORT).show();
+        displayToastInCenter(tmpUserInput.itemName+" is successfully added", Toast.LENGTH_SHORT);
     }
 
 

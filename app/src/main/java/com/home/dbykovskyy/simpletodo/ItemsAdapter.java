@@ -1,8 +1,8 @@
 package com.home.dbykovskyy.simpletodo;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,6 @@ import java.util.ArrayList;
  * Created by dbykovskyy on 8/20/15.
  */
 public class ItemsAdapter extends ArrayAdapter<Item> {
-
 
     public ItemsAdapter(Context context, ArrayList<Item> items) {
         super(context,0, items);
@@ -66,7 +65,7 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
                         remove(item);
                         notifyDataSetChanged();
                         removeFromDb(item);
-                        Toast.makeText(getContext(), itemNameToBeRemoved, Toast.LENGTH_SHORT).show();
+                        displayToastInCenter(itemNameToBeRemoved, Toast.LENGTH_SHORT);
                         dialog.dismiss();
                     }
                 });
@@ -132,6 +131,12 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
     private void removeFromDb(Item i){
         ItemsDataBaseHelper databaseHelper = ItemsDataBaseHelper.getInstance(getContext());
         databaseHelper.deleteItem(i);
+    }
+
+    private void displayToastInCenter(String msg, final int length){
+        Toast toast = Toast.makeText(getContext(), msg, length);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
 
