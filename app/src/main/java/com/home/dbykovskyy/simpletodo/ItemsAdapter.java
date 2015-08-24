@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.home.dbykovskyy.simpletodo.database.Item;
+import com.home.dbykovskyy.simpletodo.Model.Item;
 import com.home.dbykovskyy.simpletodo.database.ItemsDataBaseHelper;
 
 import java.util.ArrayList;
@@ -22,6 +22,14 @@ import java.util.ArrayList;
  * Created by dbykovskyy on 8/20/15.
  */
 public class ItemsAdapter extends ArrayAdapter<Item> {
+
+    private static class ViewHolder {
+        TextView itemName;
+        ImageView editItem;
+        ImageView deleteItem;
+    }
+
+
 
     public ItemsAdapter(Context context, ArrayList<Item> items) {
         super(context,0, items);
@@ -32,22 +40,36 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         // Get the data item for this position
         final Item item = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
+
+        ViewHolder viewHolder;
+
         if (convertView == null) {
+
+            viewHolder=  new ViewHolder();
+
+
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_layout, parent, false);
-        }
+
         // Lookup view for data population
-        TextView itemView = (TextView) convertView.findViewById(R.id.itemView);
-        ImageView editItem = (ImageView) convertView.findViewById(R.id.editIcon);
-        editItem.setImageResource(R.drawable.edit_trans);
-        ImageView deleteItem = (ImageView) convertView.findViewById(R.id.deleteIcon);
-        deleteItem.setImageResource(R.drawable.x_icon);
-        // Populate the data into the template view using the data object
-        itemView.setText(item.itemName);
+        viewHolder.itemName =(TextView) convertView.findViewById(R.id.itemView);
+        viewHolder.editItem = (ImageView) convertView.findViewById(R.id.editIcon);
+        viewHolder.deleteItem = (ImageView) convertView.findViewById(R.id.deleteIcon);
+        convertView.setTag(viewHolder);
+
+
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.itemName.setText(item.itemName);
+        viewHolder.editItem.setImageResource(R.drawable.edit_trans);
+        viewHolder.deleteItem.setImageResource(R.drawable.x_icon);
+
 
        /*
        * Set listener for X icon to delete an item
        * */
-        deleteItem.setOnClickListener(new View.OnClickListener() {
+        viewHolder.deleteItem.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //creating the dialog that asks user if she wants to remove the item
                 final Dialog dialog = new Dialog(getContext());
@@ -83,7 +105,7 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         /*
         * Set listener for pencil icon to edit an item
         * */
-        editItem.setOnClickListener(new View.OnClickListener() {
+        viewHolder.editItem.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 final Dialog dialog = new Dialog(getContext());

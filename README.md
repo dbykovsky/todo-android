@@ -13,17 +13,16 @@ This App was sucessfully tested on Genymotion emulators Google Nexus5-5.0.0-API2
 - successfully **add** items with the following Toast for selected item
 - successfully **remove** items with the following Toast for selected item
 - successfully **edit** items with current item name prepopulated inside Dialog box
-- **custom adapter** with 3 elements 
+- **set the priorities** for Todo items
+- **custom adapter** with 3 functional elements in the Listview row
 - items persist in **SQlite3**
 - **dialog box** for Delete/Edit operations 
 - improved **UI/UX** styles (added background pic, added font color for some text, removed list view separation lines)
 
 
 ######TO BE IMPROVED
-- add support for completion due dates for todo items
-- use a DialogFragment with callback to Main Activity to set todo items priority.
-Apply color schema for priporities.
-- Holder pattern for Adapter
+- add support for completion due dates for Todo items
+- persist color schema for priorities after app restart
 
 
 

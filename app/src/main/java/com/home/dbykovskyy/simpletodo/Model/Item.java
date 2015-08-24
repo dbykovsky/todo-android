@@ -1,4 +1,4 @@
-package com.home.dbykovskyy.simpletodo.database;
+package com.home.dbykovskyy.simpletodo.Model;
 
 /**
  * Created by dbykovskyy on 8/19/15.

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/itemView"
             android:textSize="20sp"
-            android:textStyle="normal"
+            android:textStyle="italic"
             android:textColorHighlight="@color/darkBlue"
             android:textColor="@color/darkBlack"
             android:padding="10dp"
